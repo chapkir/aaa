@@ -1,0 +1,44 @@
+ class Program
+    {
+        static void Main()
+        {
+            Console.Write("Введите строку с натуральными числами через пробел: ");
+            string input = Console.ReadLine();
+
+            List<int> numbers = ParseNumbers(input);
+            int countOfPairs = CountEqualPairs(numbers);
+
+            Console.WriteLine($"Количество пар равных элементов: {countOfPairs}");
+        }
+
+        static List<int> ParseNumbers(string input)
+        {
+            string[] numberStrings = input.Split(' ');
+            List<int> numbers = new List<int>();
+
+            foreach (string numberString in numberStrings)
+            {
+                if (int.TryParse(numberString, out int number))
+                {
+                    numbers.Add(number);
+                }
+            }
+
+            return numbers;
+        }
+
+        static int CountEqualPairs(List<int> numbers)
+        {
+            int count = 0;
+
+            for (int i = 0; i < numbers.Count - 2; i++)
+            {
+                if (numbers[i] == numbers[i + 1] && numbers[i] == numbers[i + 2])
+                {
+                    count++;
+                }
+            }
+
+            return count;
+        }
+    }

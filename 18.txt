@@ -1,0 +1,40 @@
+using System;
+
+class Program
+{
+    static void Main()
+    {
+        Console.Write("Введите текст: ");
+        string text = Console.ReadLine();
+
+        bool isPalindrome = IsPalindrome(text);
+
+        if (isPalindrome)
+        {
+            Console.WriteLine("Текст является палиндромом.");
+        }
+        else
+        {
+            Console.WriteLine("Текст не является палиндромом.");
+        }
+    }
+
+    static bool IsPalindrome(string text)
+    {
+        // Приведем все символы к нижнему регистру для учета регистра
+        text = text.ToLower();
+
+        // Уберем все символы, не являющиеся буквами
+        string cleanText = new string(Array.FindAll(text.ToCharArray(), char.IsLetter));
+
+        // Сравним текст с его обратной копией
+        return cleanText == ReverseString(cleanText);
+    }
+
+    static string ReverseString(string input)
+    {
+        char[] charArray = input.ToCharArray();
+        Array.Reverse(charArray);
+        return new string(charArray);
+    }
+}

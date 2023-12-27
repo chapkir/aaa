@@ -1,0 +1,43 @@
+class Program
+{
+    static void Main()
+    {
+        Console.Write("Введите размерность квадратной матрицы: ");
+        int n = int.Parse(Console.ReadLine());
+
+        int[,] matrix = new int[n, n];
+
+        Console.WriteLine("Введите элементы матрицы:");
+
+        for (int i = 0; i < n; i++)
+        {
+            for (int j = 0; j < n; j++)
+            {
+                Console.Write($"Элемент [{i}, {j}]: ");
+                matrix[i, j] = int.Parse(Console.ReadLine());
+            }
+        }
+
+        int maxElement = FindMaxElementInLowerHalf(matrix);
+
+        Console.WriteLine($"Максимальный элемент в заштрихованной нижней половине матрицы: {maxElement}");
+    }
+
+    static int FindMaxElementInLowerHalf(int[,] matrix)
+    {
+        int maxElement = int.MinValue;
+
+        for (int i = 0; i < matrix.GetLength(0); i++)
+        {
+            for (int j = 0; j <= i; j++)
+            {
+                if (matrix[i, j] > maxElement)
+                {
+                    maxElement = matrix[i, j];
+                }
+            }
+        }
+
+        return maxElement;
+    }
+}

@@ -1,0 +1,31 @@
+class Program
+    {
+        static void Main()
+        {
+            Console.WriteLine("Введите количество чисел (>=2:");
+            int n = Convert.ToInt32(Console.ReadLine());
+
+            int max1 = 0;
+            int max2 = 0;
+
+            for (int i = 0; i < n; i++)
+            {
+                Console.WriteLine($"Введите {i + 1}-е число:");
+                int number = Convert.ToInt32(Console.ReadLine());
+
+                if (number > max1)
+                {
+                    max2 = max1;
+                    max1 = number;
+                }
+                else if (number > max2)
+                {
+                    max2 = number;
+                }
+            }
+
+            Console.WriteLine($"Наибольшее число: {max1}");
+            Console.WriteLine($"Второе наибольшее число: {max2}");
+        } 
+    }
+    }

@@ -1,0 +1,46 @@
+using System;
+
+class Program
+{
+    static void Main()
+    {
+        Console.Write("Введите целое число m: ");
+        int m = int.Parse(Console.ReadLine());
+
+        Console.Write("Введите целое число n: ");
+        int n = int.Parse(Console.ReadLine());
+
+        if (m < n)
+        {
+            PrintAscending(m, n);
+        }
+        else
+        {
+            PrintDescending(m, n);
+        }
+    }
+
+    static void PrintAscending(int start, int end)
+    {
+        Console.WriteLine($"Числа от {start} до {end} в порядке возрастания:");
+
+        for (int i = start; i <= end; i++)
+        {
+            Console.Write(i + " ");
+        }
+
+        Console.WriteLine();
+    }
+
+    static void PrintDescending(int start, int end)
+    {
+        Console.WriteLine($"Числа от {start} до {end} в порядке убывания:");
+
+        for (int i = start; i >= end; i--)
+        {
+            Console.Write(i + " ");
+        }
+
+        Console.WriteLine();
+    }
+}

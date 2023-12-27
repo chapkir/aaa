@@ -1,0 +1,38 @@
+using System;
+using System.Collections.Generic;
+
+class Program
+{
+    static void Main()
+    {
+        Console.Write("Введите натуральное число n: ");
+        int n = int.Parse(Console.ReadLine());
+
+        List<string> stringsList = new List<string>();
+
+        Console.WriteLine("Введите строки:");
+
+        for (int i = 0; i < n; i++)
+        {
+            Console.Write($"Строка {i + 1}: ");
+            stringsList.Add(Console.ReadLine());
+        }
+
+        Console.Write("Введите поисковый запрос: ");
+        string searchQuery = Console.ReadLine();
+
+        Console.WriteLine($"Результаты поиска для запроса '{searchQuery}':");
+        SearchAndPrintResults(stringsList, searchQuery);
+    }
+
+    static void SearchAndPrintResults(List<string> stringsList, string searchQuery)
+    {
+        foreach (string str in stringsList)
+        {
+            if (str.Contains(searchQuery))
+            {
+                Console.WriteLine(str);
+            }
+        }
+    }
+}

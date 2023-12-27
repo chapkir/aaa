@@ -1,0 +1,33 @@
+class Program
+{
+    static void Main()
+    {
+        Console.Write("Введите натуральное число: ");
+        int n = int.Parse(Console.ReadLine());
+        int max_digit = n % 10;
+
+        while (n > 0)
+        {
+            int digit = n % 10;
+
+            if (digit % 3 == 0)
+            {
+                if (digit > max_digit)
+                {
+                    max_digit = digit;
+                }
+            }
+
+            n = n / 10; // Исправлена ошибка: заменен оператор % на /
+        }
+
+        if (max_digit == 0)
+        {
+            Console.WriteLine("NO");
+        }
+        else
+        {
+            Console.WriteLine(max_digit);
+        }
+    }
+}

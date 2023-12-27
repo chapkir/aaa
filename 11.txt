@@ -1,0 +1,40 @@
+class Program
+{
+	static void Main()
+	{
+    	Console.Write("Введите число: ");
+    	int number = int.Parse(Console.ReadLine());
+ 
+    	string result = CheckNumber(number);
+ 
+    	Console.WriteLine(result);
+	}
+ 
+	static string CheckNumber(int number)
+	{
+    	if (number % 2 != 0)
+    	{
+        	// Если число нечётное
+        	return "YES";
+    	}
+    	else
+    	{
+        	// Если число чётное
+        	if (number >= 2 && number <= 5)
+        	{
+            	// В диапазоне от 2 до 5 (включительно)
+            	return "NO";
+        	}
+        	else if (number >= 6 && number <= 20)
+        	{
+            	// В диапазоне от 6 до 20 (включительно)
+            	return "YES";
+        	}
+        	else
+        	{
+            	// Больше 20
+            	return "NO";
+        	}
+    	}
+	}
+}

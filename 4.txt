@@ -1,0 +1,36 @@
+class Program
+{
+    static void Main()
+    {
+        Console.Write("Введите натуральное число: ");
+        int number = int.Parse(Console.ReadLine());
+
+        if (IsNonDecreasingSequence(number))
+        {
+            Console.WriteLine("Последовательность цифр упорядочена не по убыванию.");
+        }
+        else
+        {
+            Console.WriteLine("Последовательность цифр упорядочена по убыванию.");
+        }
+    }
+
+    static bool IsNonDecreasingSequence(int num)
+    {
+        int prevDigit = 9; // начальное значение для сравнения
+
+        while (num > 0)
+        {
+            int currentDigit = num % 10;
+            if (currentDigit > prevDigit)
+            {
+                return false;
+            }
+
+            prevDigit = currentDigit;
+            num /= 10;
+        }
+
+        return true;
+    }
+}

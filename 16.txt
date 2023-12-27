@@ -1,0 +1,56 @@
+class Program
+    {
+        static void Main()
+        {
+            Console.WriteLine("Введите количество последовательностей кода Морзе:");
+            int n = Convert.ToInt32(Console.ReadLine());
+
+            int count = 0;
+
+            for (int i = 0; i < n; i++)
+            {
+                Console.WriteLine($"Введите последовательность Морзе {i + 1}:");
+                string morseCode = Console.ReadLine();
+
+                // Декодируем последовательность из кода Морзе
+                string decodedMessage = MorseCodeDecoder.Decode(morseCode);
+
+                // Проверяем, содержит ли декодированное сообщение число 11 минимум 3 раза
+                if (ContainsMultipleOccurrences(decodedMessage, "11", 3))
+                {
+                    count++;
+                }
+            }
+
+            Console.WriteLine($"Количество сообщений от Оди: {count}");
+        }
+
+        static bool ContainsMultipleOccurrences(string input, string pattern, int minimumOccurrences)
+        {
+            int count = 0;
+            int index = 0;
+
+            while ((index = input.IndexOf(pattern, index)) != -1)
+            {
+                count++;
+                if (count >= minimumOccurrences)
+                {
+                    return true;
+                }
+                index += pattern.Length;
+            }
+            return false;
+        }
+    }
+
+    class MorseCodeDecoder
+    {
+        public static string Decode(string morseCode)
+        {
+            // Здесь можно добавить реализацию декодирования из кода Морзе
+            // Например, использовать словарь для декодирования символов Морзе
+            // В этом примере я использовал заглушку
+            return "decoded_message";
+        }
+    }
+}

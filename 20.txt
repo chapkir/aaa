@@ -1,0 +1,35 @@
+using System;
+using System.IO;
+
+class Program
+{
+    static void Main()
+    {
+        string inputFileName = "input.txt";
+        string outputFileName = "output.txt";
+
+        try
+        {
+            string[] lines = File.ReadAllLines(inputFileName);
+
+            using (StreamWriter writer = new StreamWriter(outputFileName))
+            {
+                for (int i = 0; i < lines.Length; i++)
+                {
+                    string numberedLine = $"{i + 1}) {lines[i]}";
+                    writer.WriteLine(numberedLine);
+                }
+
+                Console.WriteLine($"Содержимое файла {inputFileName} было записано в файл {outputFileName} в виде нумерованного списка.");
+            }
+        }
+        catch (FileNotFoundException)
+        {
+            Console.WriteLine($"Файл {inputFileName} не найден.");
+        }
+        catch (IOException ex)
+        {
+            Console.WriteLine($"Произошла ошибка при чтении/записи файла: {ex.Message}");
+        }
+    }
+}

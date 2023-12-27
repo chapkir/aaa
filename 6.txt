@@ -1,0 +1,36 @@
+using System;
+ 
+class Program
+{
+	static void Main()
+	{
+    	Console.Write("Введите строку с буквой 'h' (буква 'h' должна встречаться как минимум два раза): ");
+    	string input = Console.ReadLine();
+ 
+    	string result = ReverseSubstringBetweenH(input);
+ 	
+    	Console.WriteLine($"Результат: {result}");
+	}
+ 
+	static string ReverseSubstringBetweenH(string input)
+	{
+    	int firstHIndex = input.IndexOf('h');
+    	int lastHIndex = input.LastIndexOf('h');
+ 
+    	if (firstHIndex != -1 && lastHIndex != -1 && firstHIndex != lastHIndex)
+    	{
+        	// Выделяем подстроку между первым и последним вхождением 'h'
+        	string substringToReverse = input.Substring(firstHIndex + 1, lastHIndex - firstHIndex - 1);
+ 
+        	// Переворачиваем подстроку
+        	char[] reversedChars = substringToReverse.ToCharArray();
+        	Array.Reverse(reversedChars);
+        	string reversedSubstring = new string(reversedChars);
+ 
+        	// Заменяем исходную подстроку на перевернутую в исходной строке
+        	input = input.Substring(0, firstHIndex + 1) + reversedSubstring + input.Substring(lastHIndex);
+    	}
+ 
+    	return input;
+	}
+}

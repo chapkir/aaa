@@ -1,0 +1,32 @@
+class Program
+{
+	static void Main()
+        {
+            Console.Write("Введите натуральное число n: ");
+            int n = int.Parse(Console.ReadLine());
+
+            int digitalRoot = FindDigitalRoot(n);
+
+            Console.WriteLine($"Цифровой корень числа {n} равен: {digitalRoot}");
+        }
+
+        static int FindDigitalRoot(int number)
+        {
+            while (number >= 10)
+            {
+                number = AddNumbers(number);
+            }
+            return number;
+        }
+
+        static int AddNumbers(int number)
+        {
+            int sum = 0;
+            while (number > 0)
+            {
+                sum += number % 10;
+                number /= 10;
+            }
+            return sum;
+        }
+}

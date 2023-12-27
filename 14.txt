@@ -1,0 +1,98 @@
+using System;
+
+class Program
+{
+    static void Main()
+    {
+        Console.Write("Введите натуральное число: ");
+        int number = int.Parse(Console.ReadLine());
+
+        // Вычисление суммы цифр
+        int sumOfDigits = CalculateSumOfDigits(number);
+
+        // Вычисление количества цифр
+        int numberOfDigits = CalculateNumberOfDigits(number);
+
+        // Вычисление произведения цифр
+        int productOfDigits = CalculateProductOfDigits(number);
+
+        // Вычисление среднего арифметического цифр
+        double averageOfDigits = CalculateAverageOfDigits(number);
+
+        // Вычисление первой цифры
+        int firstDigit = GetFirstDigit(number);
+
+        // Вычисление суммы первой и последней цифры
+        int sumOfFirstAndLastDigit = firstDigit + GetLastDigit(number);
+
+        // Вывод результатов
+        Console.WriteLine($"Сумма цифр: {sumOfDigits}");
+        Console.WriteLine($"Количество цифр: {numberOfDigits}");
+        Console.WriteLine($"Произведение цифр: {productOfDigits}");
+        Console.WriteLine($"Среднее арифметическое цифр: {averageOfDigits}");
+        Console.WriteLine($"Первая цифра: {firstDigit}");
+        Console.WriteLine($"Сумма первой и последней цифры: {sumOfFirstAndLastDigit}");
+    }
+
+    static int CalculateSumOfDigits(int num)
+    {
+        int sum = 0;
+
+        while (num > 0)
+        {
+            sum += num % 10;
+            num /= 10;
+        }
+
+        return sum;
+    }
+
+    static int CalculateNumberOfDigits(int num)
+    {
+        int count = 0;
+
+        while (num > 0)
+        {
+            count++;
+            num /= 10;
+        }
+
+        return count;
+    }
+
+    static int CalculateProductOfDigits(int num)
+    {
+        int product = 1;
+
+        while (num > 0)
+        {
+            product *= num % 10;
+            num /= 10;
+        }
+
+        return product;
+    }
+
+    static double CalculateAverageOfDigits(int num)
+    {
+        int sum = CalculateSumOfDigits(num);
+        int numberOfDigits = CalculateNumberOfDigits(num);
+
+        return (double)sum / numberOfDigits;
+    }
+
+    static int GetFirstDigit(int num)
+    {
+        while (num >= 10)
+        {
+            num /= 10;
+        }
+
+        return num;
+    }
+
+    static int GetLastDigit(int num)
+    {
+        return num % 10;
+    }
+}

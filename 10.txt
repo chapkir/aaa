@@ -1,0 +1,42 @@
+using System;
+using System.IO;
+ 
+class Program
+{
+	static void Main()
+	{
+    	Console.Write("Введите количество файлов: ");
+    	int n = int.Parse(Console.ReadLine());
+ 
+    	// Создаем файл output.txt
+    	using (StreamWriter outputFile = new StreamWriter("output.txt"))
+    	{
+        	// Читаем и записываем содержимое каждого файла
+        	for (int i = 0; i < n; i++)
+        	{
+            	Console.Write($"Введите имя файла {i + 1}: ");
+            	string fileName = Console.ReadLine();
+ 
+            	try
+            	{
+                	// Чтение содержимого файла и запись в output.txt
+                	using (StreamReader inputFile = new StreamReader(fileName))
+                	{
+                    	string fileContent = inputFile.ReadToEnd();
+                    	outputFile.WriteLine($"Содержимое файла {fileName}:\n{fileContent}\n");
+                	}
+            	}
+            	catch (FileNotFoundException)
+            	{
+                	Console.WriteLine($"Файл {fileName} не найден. Пропуск.");
+            	}
+            	catch (Exception ex)
+            	{
+                	Console.WriteLine($"Произошла ошибка при чтении файла {fileName}: {ex.Message}");
+            	}
+        	}
+ 
+        	Console.WriteLine("Программа завершила выполнение. Результат записан в файл output.txt.");
+    	}
+	}
+}

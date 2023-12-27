@@ -1,0 +1,35 @@
+ using System;
+
+class Program
+{
+    static void Main()
+    {
+        int mx = int.MinValue;  // Исправлена ошибка: начальное значение mx установлено на минимальное целое число
+        int s = 0;
+
+        for (int i = 0; i < 10; i++)  // Исправлена ошибка: изменен диапазон на 10
+        {
+            int x = int.Parse(Console.ReadLine());
+
+            if (x < 0)
+            {
+                s += x;  // Исправлена ошибка: заменен оператор присваивания "=" на "+=" для суммы отрицательных чисел
+
+                if (x > mx)
+                {
+                    mx = x;
+                }
+            }
+        }
+
+        if (mx == int.MinValue)
+        {
+            Console.WriteLine("NO");
+        }
+        else
+        {
+            Console.WriteLine(s);
+            Console.WriteLine(mx);
+        }
+    }
+}
