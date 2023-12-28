@@ -1,0 +1,30 @@
+public static void Main()
+ {
+  int messagesQuantity = int.Parse(Console.ReadLine());
+  
+  string[] message = new string[messagesQuantity];
+  for (int i = 0; i < messagesQuantity; i++)
+  {
+   message[i] = Console.ReadLine();
+  }
+  
+  int messWith11x3 = 0;
+  int mess11 = 0;
+  for (int j = 0; j < messagesQuantity; j++)
+  {
+   string mess = message[j];
+   for (int k = 0; k < mess.Length; k++)
+      {
+       if (k != mess.Length - 1 && mess[k] == mess[k+1] && mess[k] == '1') mess11 += 1;
+    if (k != 0 && k != mess.Length - 1 && mess[k] == mess[k-1] && mess[k] == mess[k+1] && mess[k] == '1') mess11 -= 1;
+    if (mess11 >= 3) 
+    {
+     messWith11x3 += 1;
+     mess11 = 0;
+     break;
+    }
+      }
+  }
+  
+  Console.WriteLine(messWith11x3);
+ }
