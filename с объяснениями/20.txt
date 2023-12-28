@@ -1,0 +1,61 @@
+using System;
+using System.IO;
+
+class Program
+{
+    static void Main()
+    {
+        string inputFileName = "input.txt";
+        string outputFileName = "output.txt";
+
+        try
+        {
+            string[] lines = File.ReadAllLines(inputFileName);
+
+            using (StreamWriter writer = new StreamWriter(outputFileName))
+            {
+                for (int i = 0; i < lines.Length; i++)
+                {
+                    string numberedLine = $"{i + 1}) {lines[i]}";
+                    writer.WriteLine(numberedLine);
+                }
+
+                Console.WriteLine($"Содержимое файла {inputFileName} было записано в файл {outputFileName} в виде нумерованного списка.");
+            }
+        }
+        catch (FileNotFoundException)
+        {
+            Console.WriteLine($"Файл {inputFileName} не найден.");
+        }
+        catch (IOException ex)
+        {
+            Console.WriteLine($"Произошла ошибка при чтении/записи файла: {ex.Message}");
+        }
+    }
+}
+
+Данный код представляет собой программу на языке программирования C#, которая читает содержимое файла "input.txt" и записывает его в файл "output.txt" в виде нумерованного списка. Вот пошаговое объяснение кода:
+
+Импортируется пространство имен System, которое содержит классы и методы для работы с файлами и потоками.
+
+Объявляется класс Program.
+
+В методе Main() происходит основная логика программы. Сначала объявляются две строки inputFileName и outputFileName, которые содержат имена входного и выходного файлов соответственно.
+
+В блоке try выполняется код, который может вызвать исключение.
+
+Внутри блока try вызывается метод File.ReadAllLines(inputFileName), который считывает все строки из файла inputFileName и сохраняет их в массив строк lines.
+
+Используется конструкция using для создания объекта StreamWriter, который будет использоваться для записи в файл outputFileName. Конструкция using гарантирует, что объект StreamWriter будет корректно закрыт после использования.
+
+Внутри блока using выполняется цикл for, который перебирает все строки в массиве lines. На каждой итерации формируется строка numberedLine, которая содержит текущий номер строки (i + 1) и саму строку из массива lines[i].
+
+С помощью метода writer.WriteLine(numberedLine) строка numberedLine записывается в файл outputFileName.
+
+После завершения цикла выводится сообщение с помощью Console.WriteLine(), которое указывает, что содержимое файла inputFileName было записано в файл outputFileName в виде нумерованного списка.
+
+Если возникает исключение FileNotFoundException, то выводится сообщение с помощью Console.WriteLine(), которое указывает, что файл inputFileName не найден.
+
+Если возникает исключение IOException, то выводится сообщение с помощью Console.WriteLine(), которое указывает, что произошла ошибка при чтении/записи файла, и выводится сообщение об ошибке из объекта исключения ex.Message.
+
+Таким образом, программа считывает содержимое файла "input.txt" и записывает его в файл "output.txt" в виде нумерованного списка. Если файл не найден или происходит ошибка при чтении/записи, программа выводит соответствующие сообщения об ошибке.

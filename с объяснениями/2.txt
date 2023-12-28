@@ -1,0 +1,72 @@
+  using System;
+ 
+class Program
+{
+    static void Main()
+    {
+        Console.WriteLine("Введите число:");
+        int number = int.Parse(Console.ReadLine());
+
+        if (IsInterestingNumber(number))
+        {
+            Console.WriteLine("Число интересное");
+        }
+        else
+        {
+            Console.WriteLine("Число неинтересное");
+        }
+    }
+
+    static bool IsInterestingNumber(int number)
+    {
+        string numberString = number.ToString();
+        int length = numberString.Length;
+
+        if (length < 3)
+        {
+            // Для чисел меньше трех цифр нельзя выполнить условие, поэтому считаем их неинтересными.
+            return false;
+        }
+
+        char minDigit = numberString[0];
+        char maxDigit = numberString[0];
+        int sumDigits = 0;
+
+        for (int i = 0; i < length; i++)
+        {
+            char digit = numberString[i];
+            minDigit = (char)Math.Min(minDigit, digit);
+            maxDigit = (char)Math.Max(maxDigit, digit);
+            sumDigits += (int)Char.GetNumericValue(digit);
+        }
+
+        int middleDigit = (sumDigits - (int)Char.GetNumericValue(minDigit) - (int)Char.GetNumericValue(maxDigit)) / (length - 2);
+
+        return maxDigit - minDigit == middleDigit;
+    }
+}
+
+
+Программа выводит приглашение "Введите число:" и ожидает ввода пользователя.
+
+Пользователь вводит число, которое читается из консоли, преобразуется из типа string в int с помощью метода int.Parse(Console.ReadLine()) и сохраняется в переменной number.
+
+Это число передается в функцию IsInterestingNumber, которая определяет интересность числа по неким критериям.
+
+Если функция IsInterestingNumber возвращает true, программа выводит сообщение "Число интересное". В противном случае выводится сообщение "Число неинтересное".
+
+Функция IsInterestingNumber:
+
+Число преобразуется в строку (numberString), что позволяет проанализировать каждую цифру.
+
+Если длина numberString меньше 3, функция сразу возвращает false, так как по условию задачи числа меньше трех цифр не могут быть интересными.
+
+Затем выполняется цикл по всем цифрам числа. Для каждой цифры выполняются следующие действия:
+
+Минимальная (minDigit) и максимальная (maxDigit) цифры в числе определяются путем сравнения с текущей цифрой digit.
+Сумма всех цифр (sumDigits) находится путем накопления суммы.
+После цикла программа пытается вычислить "среднюю" цифру (не среднее арифметическое!), исключая минимальную и максимальную. Это делается путем вычитания минимальной и максимальной цифр из общей суммы и деления на количество оставшихся цифр (length - 2).
+
+Возвращаемое значение определяется тем, равна ли разница между максимальной и минимальной цифрами этой вычисленной "средней" цифре (maxDigit - minDigit == middleDigit). Если да, число считается интересным.
+
+
